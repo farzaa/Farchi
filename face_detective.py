@@ -16,9 +16,7 @@ def mark_faces(frame):
 
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        mark_eyes(gray, frame, x, y, w, h)
 
 def alert_driver():
     subprocess.run('say "Are you okay?"')
-
-        mark_eyes(gray, frame, x, y, w, h)
-
