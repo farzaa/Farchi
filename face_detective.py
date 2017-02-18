@@ -1,3 +1,4 @@
+import numpy as np
 import cv2
 import time
 from eye_detective import mark_eyes

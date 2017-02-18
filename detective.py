@@ -1,6 +1,7 @@
 import cv2
 import sys
 from face_detective import mark_faces
+from object_detective import mark_plates
 
 class Detective():
     def __init__(self):
@@ -15,8 +16,9 @@ class Detective():
             ret, frame = video_capture.read()
             ret_front, frame_front = video_capture_front.read()
             frame = cv2.resize(frame, None,fx=0.4, fy=0.4, interpolation = cv2.INTER_CUBIC)
-            frame_front = cv2.resize(frame_front, None,fx=0.4, fy=0.4, interpolation = cv2.INTER_CUBIC)
+            frame_front = cv2.resize(frame_front, None,fx=0.2, fy=0.2, interpolation = cv2.INTER_CUBIC)
             mark_faces(frame)
+            mark_plates(frame_front)
 
             # Display the resulting frame
             cv2.imshow('Video', frame)
