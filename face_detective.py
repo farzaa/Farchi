@@ -1,4 +1,5 @@
 import cv2
+import subprocess
 
 faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
@@ -15,3 +16,6 @@ def mark_faces(frame):
 
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+def alert_driver():
+    subprocess.run('say "Are you okay?"')
