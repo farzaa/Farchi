@@ -5,7 +5,7 @@ import subprocess
 faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 def get_faces(gray):
-    faces = faceCascade.detectMultiScale(gray, 1.3, 3)
+    faces = faceCascade.detectMultiScale(gray, 1.05, 3, minSize=(100,100))
     return faces
 
 def mark_faces(frame):
