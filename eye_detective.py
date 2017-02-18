@@ -1,10 +1,9 @@
 import cv2
-from circle_detective import hough_gradient
 
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
 def get_eyes(gray):
-    eyes = eye_cascade.detectMultiScale(gray, 1.05, 8, minSize=(20,20))
+    eyes = eye_cascade.detectMultiScale(gray, 1.05, 10, minSize=(20,20))
     return eyes
 
 def mark_eyes(gray, frame, x, y, w, h):
