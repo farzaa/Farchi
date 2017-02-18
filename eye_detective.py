@@ -12,4 +12,7 @@ def mark_eyes(gray, frame, x, y, w, h):
     eyes = get_eyes(roi_gray)
 
     for(ex, ey, ew, eh) in eyes:
-        cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(255,0,0),2)
+        cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+
+    return len(eyes)
+
