@@ -12,7 +12,7 @@ class Detective():
         while True:
             # Capture frame-by-frame
             ret, frame = video_capture.read()
-
+            frame = cv2.resize(frame,None,fx=0.4, fy=0.4, interpolation = cv2.INTER_CUBIC)
             mark_faces(frame)
             
             # Display the resulting frame
@@ -20,7 +20,7 @@ class Detective():
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-
+            
         # When everything is done, release the capture
         video_capture.release()
         cv2.destroyAllWindows()

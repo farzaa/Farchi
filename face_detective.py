@@ -1,15 +1,10 @@
 import cv2
 
-def get_faces(gray):
-    faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-    faces = faceCascade.detectMultiScale(
-                gray,
-                scaleFactor=1.1,
-                minNeighbors=1,
-                minSize=(30, 30),
-                flags= 0
-            )
+def get_faces(gray):
+
+    faces = faceCascade.detectMultiScale(gray, 1.3, 3)
     return faces
 
 def mark_faces(frame):
