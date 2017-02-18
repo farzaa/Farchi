@@ -4,7 +4,7 @@ from face_detective import mark_faces
 from object_detective import mark_plates
 
 class Detective():
-    def __init__(self):
+    def __init__(self, ui):
         pass
 
     def track_faces(self):
@@ -35,6 +35,4 @@ class Detective():
         #video_capture_front.release()
         cv2.destroyAllWindows()
 
-if __name__ == "__main__":
-    d = Detective()
-    d.track_faces()
+

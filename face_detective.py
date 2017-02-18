@@ -71,7 +71,7 @@ def is_texting(face, frame):
         return False
 
     fx, fy, fw, fh = face
-    starty = 90
+    starty = 80
     height, width, channels = frame.shape
     cv2.rectangle(frame, (0, starty), (width, starty + 40), (0, 0, 255), 2)
 
