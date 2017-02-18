@@ -1,5 +1,4 @@
 import cv2
-from circle_detective import hough_gradient
 
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye_tree_eyeglasses.xml')
 

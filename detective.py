@@ -16,7 +16,8 @@ class Detective():
             ret, frame = video_capture.read()
             #ret_front, frame_front = video_capture_front.read()
             frame = cv2.resize(frame, None,fx=0.4, fy=0.4, interpolation = cv2.INTER_CUBIC)
-            #frame_front = cv2.resize(frame_front, None,fx=0.2, fy=0.2, interpolation = cv2.INTER_CUBIC)
+            
+            #frame_front = cv2.resize(frame_front, None,fx=0.3, fy=0.3, interpolation = cv2.INTER_CUBIC)
             mark_faces(frame)
             #mark_plates(frame_front)
 
