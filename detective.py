@@ -14,16 +14,16 @@ class Detective():
         while True:
             # Capture frame-by-frame
             ret, frame = video_capture.read()
-            ret_front, frame_front = video_capture_front.read()
+            #ret_front, frame_front = video_capture_front.read()
             frame = cv2.resize(frame, None,fx=0.4, fy=0.4, interpolation = cv2.INTER_CUBIC)
-            frame_front = cv2.resize(frame_front, None,fx=0.2, fy=0.2, interpolation = cv2.INTER_CUBIC)
+            #frame_front = cv2.resize(frame_front, None,fx=0.2, fy=0.2, interpolation = cv2.INTER_CUBIC)
             mark_faces(frame)
-            mark_plates(frame_front)
+            #mark_plates(frame_front)
 
             # Display the resulting frame
             cv2.imshow('Video', frame)
 
-            cv2.imshow('Video_Front', frame_front)
+            #cv2.imshow('Video_Front', frame_front)
 
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -31,7 +31,7 @@ class Detective():
             
         # When everything is done, release the capture
         video_capture.release()
-        video_capture_front.release()
+        #video_capture_front.release()
         cv2.destroyAllWindows()
 
 if __name__ == "__main__":
