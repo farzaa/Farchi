@@ -4,6 +4,12 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtGui import QPainter, QColor, QBrush
 
 
+red = QColor(255, 0, 0);
+green = QColor(0, 255, 0);
+
+txt_color = QColor(255, 0, 0);
+sleep_color = QColor(255, 0, 0);
+
 class user_interface(QWidget):
     
     def __init__(self):
@@ -24,24 +30,36 @@ class user_interface(QWidget):
         qp = QPainter()
         qp.begin(self)
         self.drawRectangles(qp)
-        qp.end()
 
-        
+    
     def drawRectangles(self, qp):
       
         col = QColor(0, 0, 0)
         col.setNamedColor('#d4d4d4')
         qp.setPen(col)
 
-        qp.setBrush(QColor(200, 0, 0))
+        qp.setBrush(txt_color)
         qp.drawRect(10, 15, 30, 30)
 
-        qp.setBrush(QColor(255, 80, 0, 160))
+        qp.setBrush(green)
         qp.drawRect(130, 15, 30, 30)
 
         qp.setBrush(QColor(25, 0, 90, 200))
         qp.drawRect(250, 15, 30, 30)
-              
+
+    def change_colors(self, txt, sleep):
+        if txt:
+            txt_color = QColor(0, 255, 0);
+        else:
+            txt_color = QColor(255, 0, 0);
+
+        if sleep:
+            sleep_color = QColor(0, 255, 0);
+        else:
+            sleep_color = QColor(255, 0, 0);
+
+        self.repaint()
+        print (sleep)
         
 if __name__ == '__main__':
     

@@ -24,23 +24,30 @@ def get_faces(gray):
 
 def mark_faces(frame):
     num_eyes = 0
-    global time1
-    global time2
-    global time_threshold
-    global iteration
 
     # Draw a rectangle around the faces
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = get_faces(gray)
 
+    txt = False
+    sleep = False
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
         txt = is_texting((x,y,w,h), frame)
         num_eyes = mark_eyes(gray, frame, x, y, w, h)
+        sleep = is_sleeping(num_eyes)
 
         if txt:
             alert_driver(texting=True)
-        
+
+    return txt, sleep
+
+
+def is_sleeping(num_eyes):
+    global time1
+    global time2
+    global time_thresholdq
+    global iterationq
 
     if num_eyes <= 0:
         print("No eyes")
@@ -51,11 +58,14 @@ def mark_faces(frame):
             if (time2 - time1) > time_threshold:
                 alert_driver()
                 time1 = None
+                return True
     else:
         print("Eyes")
         time1 = None
         time2 = None
         iteration = 1
+    return False
+
 
 def is_texting(face, frame):
     global txt_time1

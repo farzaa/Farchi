@@ -3,8 +3,12 @@ import sys
 from face_detective import mark_faces
 from object_detective import mark_plates
 
+
 class Detective():
+    ui = None
+
     def __init__(self, ui):
+        self.ui = ui
         pass
 
     def track_faces(self):
@@ -18,7 +22,7 @@ class Detective():
             frame = cv2.resize(frame, None,fx=0.4, fy=0.4, interpolation = cv2.INTER_CUBIC)
             
             #frame_front = cv2.resize(frame_front, None,fx=0.3, fy=0.3, interpolation = cv2.INTER_CUBIC)
-            mark_faces(frame)
+            txt, sleep = mark_faces(frame)
             #mark_plates(frame_front)
 
             # Display the resulting frame
@@ -26,7 +30,8 @@ class Detective():
 
             #cv2.imshow('Video_Front', frame_front)
 
-
+            # Send true or false params over to UI.
+            self.ui.change_colors(txt, sleep)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
             
