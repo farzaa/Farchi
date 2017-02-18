@@ -14,9 +14,10 @@ class Detective():
             ret, frame = video_capture.read()
             frame = cv2.resize(frame,None,fx=0.4, fy=0.4, interpolation = cv2.INTER_CUBIC)
             mark_faces(frame)
-            
+
             # Display the resulting frame
             cv2.imshow('Video', frame)
+
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break

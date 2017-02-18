@@ -1,10 +1,10 @@
 import cv2
-import subprocess
+from eye_detective import mark_eyes
 
+import subprocess
 faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 def get_faces(gray):
-
     faces = faceCascade.detectMultiScale(gray, 1.3, 3)
     return faces
 
@@ -19,3 +19,6 @@ def mark_faces(frame):
 
 def alert_driver():
     subprocess.run('say "Are you okay?"')
+
+        mark_eyes(gray, frame, x, y, w, h)
+
