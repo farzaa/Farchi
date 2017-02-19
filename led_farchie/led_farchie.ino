@@ -55,28 +55,14 @@ void loop() {
     // Received byte to turn on FOCUS LED
     if (received == 'f')
     {
-      
+      digitalWrite(FOCUS_LED, HIGH);
+    }
+
+    // NOT FOCUSED
+    if (received == 'g')
+    {
+      digitalWrite(FOCUS_LED, LOW); 
     }
   }
 
 }
-
-void toggle_sleep_light()
-{
-  static int on = 0;
-
-  digitalWrite(SLEEP_LED, on);
-  on ^= 1;
-}
-
-
-void toggle_text_light()
-{
-  static int on = 0;
-}
-
-void toggle_focused_light()
-{
-  static int on = 0;
-}
-
