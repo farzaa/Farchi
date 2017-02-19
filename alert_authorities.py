@@ -1,4 +1,5 @@
 from twilio.rest import TwilioRestClient
+import twilio.twiml
 
 
 account_sid = "ACf9c87a70f6df3afa949cd02fab0d2b5f" # Your Account SID from www.twilio.com/console
@@ -13,17 +14,10 @@ def text_alerts():
         to="+19542572555",    # Replace with your phone number
         from_="+19542899840") # Replace with your Twilio number
 
-    print(message.sid)
-
 def call_ambulance():
 
     client = TwilioRestClient(account_sid, auth_token)
 
-    resp = twilio.twiml.Response()
-    resp.say("Hello Monkey")
-
-    print(resp)
-
-    call = client.calls.create(url="http://demo.twilio.com/docs/voice.xml",
+    call = client.calls.create(url="https://handler.twilio.com/twiml/EH1c721c706e81455a76eacb022e25f645",
     to="+19542572555",
     from_="+19542899840")
