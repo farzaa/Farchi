@@ -13,6 +13,7 @@ class user_interface(QWidget):
 
         self.txt_color = QColor(255, 0, 0);
         self.sleep_color = QColor(255, 0, 0);
+        self.focused_color = QColor(255, 0, 0);
         self.initUI()
         self.ser = serial.Serial('/dev/tty.usbmodem1411', 9600)
         
@@ -33,7 +34,7 @@ class user_interface(QWidget):
         col.setNamedColor('#000')
         qp.setPen(col)
 
-        qp.setBrush(self.sleep_color)
+        qp.setBrush(self.focused_color)
         qp.drawRect(10, 15, 30, 30)
         qp.drawText(0, 70, "Focused") 
               
@@ -48,11 +49,11 @@ class user_interface(QWidget):
         qp.setBrush(QColor(25, 0, 90, 200))
         qp.drawRect(250, 15, 30, 30)
 
-    def change_colors(self, txt, sleep):
+    def change_colors(self, txt, sleep, focused):
         print (sleep)
         if txt:
             self.txt_color = QColor(0, 255, 0)
-            self.ser.write(b't')
+            #self.ser.write(b't')
         else:
             self.txt_color = QColor(255, 0, 0)
         
@@ -66,6 +67,10 @@ class user_interface(QWidget):
             self.sleep_color = QColor(255, 0, 0)
             self.ser.write(b'r')
 
+        if focused:
+            self.focused_color = QColor(0, 255, 0)
+        else:
+            self.focused_color = QColor(255, 0, 0)
 
         self.update()
         

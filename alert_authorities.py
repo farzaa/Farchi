@@ -14,3 +14,16 @@ def text_alerts():
         from_="+19542899840") # Replace with your Twilio number
 
     print(message.sid)
+
+def call_ambulance():
+
+    client = TwilioRestClient(account_sid, auth_token)
+
+    resp = twilio.twiml.Response()
+    resp.say("Hello Monkey")
+
+    print(resp)
+
+    call = client.calls.create(url="http://demo.twilio.com/docs/voice.xml",
+    to="+19542572555",
+    from_="+19542899840")

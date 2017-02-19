@@ -31,17 +31,25 @@ def mark_faces(frame):
 
     txt = False
     sleep = None
+    focused = False
+
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
         txt = is_texting((x,y,w,h), frame)
         num_eyes = mark_eyes(gray, frame, x, y, w, h)
         sleep = is_sleeping(num_eyes)
+        focused = is_focused(num_eyes)
 
         if txt:
             alert_driver(texting=True)
 
-    return txt, sleep
+    return txt, sleep, focused
 
+
+def is_focused(num_eyes):
+    if num_eyes == 2:
+        return True
+    return False
 
 def is_sleeping(num_eyes):
     global time1

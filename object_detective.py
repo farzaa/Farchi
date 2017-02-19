@@ -7,7 +7,6 @@ def get_plates(gray):
     return plates
 
 def mark_plates(frame):
-
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     plates = get_plates(gray)
     for (x, y, w, h) in plates:

@@ -13,7 +13,7 @@ class Detective():
 
     def track_faces(self):
         video_capture = cv2.VideoCapture(0)
-        video_capture_front = cv2.VideoCapture(1)
+        #video_capture_front = cv2.VideoCapture(1)
 
         while True:
             # Capture frame-by-frame
@@ -21,8 +21,8 @@ class Detective():
             #ret_front, frame_front = video_capture_front.read()
             frame = cv2.resize(frame, None,fx=0.4, fy=0.4, interpolation = cv2.INTER_CUBIC)
             
-            #frame_front = cv2.resize(frame_front, None,fx=0.3, fy=0.3, interpolation = cv2.INTER_CUBIC)
-            txt, sleep = mark_faces(frame)
+            #frame_front = cv2.resize(frame_front,5k None,fx=0.3, fy=0.3, interpolation = cv2.INTER_CUBIC)
+            txt, sleep, focused = mark_faces(frame)
             #mark_plates(frame_front)
 
             # Display the resulting frame
@@ -31,7 +31,7 @@ class Detective():
             #cv2.imshow('Video_Front', frame_front)
 
             # Send true or false params over to UI.
-            self.ui.change_colors(txt, sleep)
+            self.ui.change_colors(txt, sleep, focused)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
             
