@@ -5,7 +5,6 @@ import cv2
  
 # load the Tetris block image, convert it to grayscale, and threshold
 # the image
-print("OpenCV Version: {}".format(cv2.__version__))
 image = cv2.imread("tetris_blocks.png")
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 thresh = cv2.threshold(gray, 225, 255, cv2.THRESH_BINARY_INV)[1]
