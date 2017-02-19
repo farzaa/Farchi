@@ -31,17 +31,17 @@ class user_interface(QWidget):
         col.setNamedColor('#000')
         qp.setPen(col)
 
-        qp.setBrush(self.txt_color)
+        qp.setBrush(self.sleep_color)
         qp.drawRect(10, 15, 30, 30)
         qp.drawText(0, 70, "Focused") 
               
-        qp.setBrush(txt_color)
-        qp.drawRect(70, 15, 30, 30)
-        qp.drawText(60, 70, "Texting")
-
         qp.setBrush(self.sleep_color)
+        qp.drawRect(70, 15, 30, 30)
+        qp.drawText(60, 70, "Sleeping")
+
+        qp.setBrush(self.txt_color)
         qp.drawRect(130, 15, 30, 30)
-        qp.drawText(120, 70, "Sleeping")
+        qp.drawText(120, 70, "Texting")
 
         qp.setBrush(QColor(25, 0, 90, 200))
         qp.drawRect(250, 15, 30, 30)
@@ -60,6 +60,7 @@ class user_interface(QWidget):
             self.sleep_color = QColor(0, 255, 0)
         else:
             self.sleep_color = QColor(255, 0, 0)
+
 
         self.update()
         
