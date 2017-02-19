@@ -123,6 +123,6 @@ def alert_driver(texting=False):
         subprocess.Popen(['say', please + " are you okay?"])
     """
     if iteration == 3:
-        print("Texting")
+        text_alerts()
         
     iteration += 1

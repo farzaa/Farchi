@@ -1,4 +1,5 @@
 import serial
+import serial.tools.list_ports
 import sys
 from detective import Detective
 from PyQt5.QtWidgets import QWidget, QApplication
@@ -15,7 +16,12 @@ class user_interface(QWidget):
         self.sleep_color = QColor(255, 0, 0);
         self.focused_color = QColor(255, 0, 0);
         self.initUI()
-        self.ser = serial.Serial('/dev/tty.usbmodem1411', 9600)
+        ardu_port = None
+        for open_port in list(serial.tools.list_ports.comports()):
+            if "usbmodem" in open_port.device:
+                ardu_port = open_port.device
+
+        self.ser = serial.Serial(ardu_port, 9600)
         
     def initUI(self):      
 
@@ -53,7 +59,7 @@ class user_interface(QWidget):
         print (sleep)
         if txt:
             self.txt_color = QColor(0, 255, 0)
-            #self.ser.write(b't')
+            self.ser.write(b't')
         else:
             self.txt_color = QColor(255, 0, 0)
         
@@ -69,8 +75,10 @@ class user_interface(QWidget):
 
         if focused:
             self.focused_color = QColor(0, 255, 0)
+            self.ser.write(b'f')
         else:
             self.focused_color = QColor(255, 0, 0)
+            self.ser.write(b'g')
 
         self.update()
         

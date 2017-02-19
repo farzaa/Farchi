@@ -14,17 +14,18 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  if (flashes_left == 0)
+    digitalWrite(TEXT_LED, LOW);
   if (flashes_left > 0)
     flashes_left -= 1;
     
-  if (flashes_left % 2 == 0)
+  if (flashes_left % 2 == 0 && flashes_left != 0)
   {
     digitalWrite(TEXT_LED, LOW);
     delay(100);
   }
 
-  if (flashes_left % 2 == 1)
+  if (flashes_left % 2 == 1 && flashes_left != 0)
   {
     digitalWrite(TEXT_LED, HIGH);
     delay(100);
