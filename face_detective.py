@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import time
 from eye_detective import mark_eyes
-
+from alert_authorities import text_alerts
 import subprocess
 
 faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -114,4 +114,7 @@ def alert_driver(texting=False):
         please = "please " * (iteration-4)
         subprocess.Popen(['say', please + " are you okay?"])
     """
+    if iteration == 3:
+        print("Texting")
+        
     iteration += 1

@@ -1,3 +1,4 @@
+import serial
 import sys
 from detective import Detective
 from PyQt5.QtWidgets import QWidget, QApplication
@@ -13,6 +14,7 @@ class user_interface(QWidget):
         self.txt_color = QColor(255, 0, 0);
         self.sleep_color = QColor(255, 0, 0);
         self.initUI()
+        self.ser = serial.Serial('/dev/tty.usbmodem1411', 9600)
         
     def initUI(self):      
 
@@ -50,6 +52,7 @@ class user_interface(QWidget):
         print (sleep)
         if txt:
             self.txt_color = QColor(0, 255, 0)
+            self.ser.write(b't')
         else:
             self.txt_color = QColor(255, 0, 0)
         
@@ -58,8 +61,10 @@ class user_interface(QWidget):
 
         if sleep:
             self.sleep_color = QColor(0, 255, 0)
+            self.ser.write(b's')
         else:
             self.sleep_color = QColor(255, 0, 0)
+            self.ser.write(b'r')
 
 
         self.update()
