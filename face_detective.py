@@ -7,7 +7,7 @@ import subprocess
 
 faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-time_threshold = 3
+time_threshold = 1.5
 time1 = None
 time2 = None
 iteration = 1
@@ -30,7 +30,7 @@ def mark_faces(frame):
     faces = get_faces(gray)
 
     txt = False
-    sleep = False
+    sleep = None
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
         txt = is_texting((x,y,w,h), frame)
@@ -47,24 +47,26 @@ def is_sleeping(num_eyes):
     global time1
     global time2
     global time_thresholdq
-    global iterationq
+    global iteration
 
     if num_eyes <= 0:
-        print("No eyes")
         if time1 == None:
             time1 = time.time()
         else:
             time2 = time.time()
             if (time2 - time1) > time_threshold:
+                print("alerted")
                 alert_driver()
                 time1 = None
                 return True
+            return None
     else:
-        print("Eyes")
         time1 = None
         time2 = None
         iteration = 1
-    return False
+        return False
+    
+    return None
 
 
 def is_texting(face, frame):
@@ -72,8 +74,6 @@ def is_texting(face, frame):
     global txt_time2
     global times_txting
     global max_txting
-
-    print("Times texting: " + str(times_txting))
 
     txt_time2 = time.time()
 
@@ -98,20 +98,20 @@ def alert_driver(texting=False):
     global iteration
     
     if texting:
-        subprocess.run(['say', '"Get off your phone!"'])
+        subprocess.Popen(['say', '"Get off your phone!"'])
         return
 
-    if iteration == 1:
-        subprocess.run(['say', '"Are you okay?"'])
+    
+    subprocess.Popen(['say', '"Wake up!"'])
+    """
     elif iteration == 2:
-        subprocess.run(['say', '"Richie, are you sure you are okay?"'])
+        subprocess.Popen(['say', '"Richie, are you sure you are okay?"'])
     elif iteration == 3:
-        subprocess.run(['say', '"Holy guacamole, are you okay?"'])
+        subprocess.Popen(['say', '"Holy guacamole, are you okay?"'])
     elif iteration == 4:
-        subprocess.run(['say', 'You are going to die! Wake up!'])
+        subprocess.Popen(['say', 'You are going to die! Wake up!'])
     elif iteration >= 5:
         please = "please " * (iteration-4)
-        subprocess.run(['say', please + " are you okay?"])
-
-    print("Alerted")
+        subprocess.Popen(['say', please + " are you okay?"])
+    """
     iteration += 1
