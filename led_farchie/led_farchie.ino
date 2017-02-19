@@ -1,7 +1,8 @@
 #define SLEEP_LED 13
+#define TEXT_LED 14
+#define FOCUS_LED 15
 
-
-int flashes_left = 10;
+int flashes_left = 21;
 int state = 0;
 
 void setup() {
@@ -13,12 +14,19 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
+
   if (flashes_left > 0)
-  {
     flashes_left -= 1;
-    digitalWrite(SLEEP_LED, state);
-    state ^= HIGH;
+    
+  if (flashes_left % 2 == 0)
+  {
+    digitalWrite(TEXT_LED, LOW);
+    delay(100);
+  }
+
+  if (flashes_left % 2 == 1)
+  {
+    digitalWrite(TEXT_LED, HIGH);
     delay(100);
   }
   
@@ -41,7 +49,7 @@ void loop() {
     // Received byte to turn on TEXTING LED
     if (received == 't')
     {
-      flashes_left = 10; 
+      flashes_left = 21; 
     }
 
     // Received byte to turn on FOCUS LED
